@@ -41,14 +41,24 @@ keep up with what the Object is supposed to represent - especially between forma
 ￼
 Using Non-standard Classes
 Of course, since Reflection is dynamic, you don't have to be restricted to using standard java objects. There is an object in the project called MyClass. Here is a sample interaction using that non-standard class:
+
 MyClass obj = new MyClass(3, "Hey!");
+
 ok. I have a new MyClass called obj
+
 String output = obj.toString();
+
 I made a new object. Result was 3 : Hey!
+
 Integer num = obj.getNumber();
+
 I made a new object. Result was 3
+
 output = obj.getMessage();
+
 I changed the value of output to my result, Hey!
+
 obj.print();
+
 3 : Hey!
 I performed the operation. My answer is: null
