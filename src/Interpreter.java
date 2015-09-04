@@ -99,8 +99,12 @@ public class Interpreter {
 	public String makeObject(ParseResults parse){
 		Object[] args = convertNameToInstance(parse.arguments);
 		Object newObj = ReflectionUtilities.createInstance(parse.className, args);
-		mySymbolTable.put(parse.objectName, newObj);
-		return "You made a new " + parse.className + " called " + parse.objectName;
+		if (newObj != null) {
+			mySymbolTable.put(parse.objectName, newObj);
+			return "You made a new " + parse.className + " called " + parse.objectName;
+		}
+		else
+			return "We had a problem with that class. It was not added to the symbol table!";
 	}
 	
 	/*
@@ -119,16 +123,15 @@ public class Interpreter {
 		Object objName = convertNameToInstance(parse.objectName);
 		Object created = ReflectionUtilities.callMethod(objName, parse.methodName, args);
 
-		if (!mySymbolTable.containsValue(created)) {
-			mySymbolTable.put(parse.answerName, created);
-			return "You have made a new object. The result was " + created;
+		if(created != null) {
+			if (!mySymbolTable.containsKey(parse.answerName)) {
+				mySymbolTable.put(parse.answerName, created);
+				return "You have made a new object. The result was " + created;
+			} else if (mySymbolTable.containsKey(parse.answerName)) {
+				mySymbolTable.put(parse.answerName, created);
+				return "You have changed the value of " + parse.answerName + " to " + created;
+			}
 		}
-		else if (mySymbolTable.containsKey(parse.answerName)){
-			mySymbolTable.put(parse.objectName, created);
-			return "You have changed the value of " + parse.objectName + " to " + created;
-		}
-		else
-			return "Oops!";
+		return "Operation performed. My reply is " + created;
 	}
-
 }
