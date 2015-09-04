@@ -10,13 +10,21 @@ Each class name should be fully qualified,
 I only create objects and call methods.
 I only use literals of integers and Strings.
 Enter 'Q' to quit.
+
 java.lang.String word = new java.lang.String("Interpreter");
+
 ok. I have a new java.lang.String called word
+
 java.lang.String nextWord = word.substring(0,4);
+
 I made a new object. Result was Inte
+
 word = word.concat(nextWord);
+
 I changed the value of word to my result, InterpreterInte
+
 java.lang.Integer eIndex = word.indexOf("e");
+
 I made a new object. Result was 3
 
 When you finish reading this write-up, start by checking out the code written for you. Some Definitions
